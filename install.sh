@@ -12,9 +12,9 @@ if [ "$answer" = "y" ]; then
     lsblk -f
     read -p "Enter the partition containing windows:" drive
     mkdir mnt
-    mount /dev/$drive mnt
+    sudo mount /dev/$drive mnt
     sudo grub-mkconfig -o /boot/grub/grub.cfg
-    umount /dev/$drive
+    sudo umount /dev/$drive
     rmdir mnt
 fi
 
