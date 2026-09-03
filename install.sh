@@ -21,13 +21,11 @@ if [ "$answer" = "y" ]; then
     rmdir mnt
 fi
 
-# installs desktop env
-sudo pacman -S --noconfirm kitty ly picom
-sudo systemctl disable getty@tty2.service
-sudo systemctl enable ly@tty2.service
-
 # creates config files
 sudo cp config/ly.ini /etc/ly/config.ini
+
+# removes unused desktop env
+sudo rm /usr/share/wayland-sessions/hyprland-uwsm.desktop
 
 # installs package manager for desktop apps
 sudo pacman -S --noconfirm base-devel git
