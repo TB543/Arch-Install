@@ -2,10 +2,10 @@
 
 
 # gets user input for install steps
-read "key?Enter the user credentials encryption key: "
-read "ans?Edit config? [y/n]: "
+read -rsp "Enter the user credentials encryption key: " key
+read -rp "Edit config? [y/n]: " ans
 
-if [[ "$ans" = "y" ]]; then
+if [ "$ans" = "y" ]; then
     archinstall --config-url https://raw.githubusercontent.com/TB543/Arch-Install/refs/heads/main/config/user_configuration.json \
         --creds-url https://raw.githubusercontent.com/TB543/Arch-Install/refs/heads/main/config/user_credentials.json \
         --creds-decryption-key "$key" \
