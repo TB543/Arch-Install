@@ -3,6 +3,7 @@
 
 # gets user input for install steps
 read -rsp "Enter the user credentials encryption key: " key
+echo
 read -rp "Edit config? [y/n]: " ans
 
 if [ "$ans" = "y" ]; then
