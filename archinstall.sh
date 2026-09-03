@@ -4,9 +4,12 @@
 # gets user input for install steps
 read -rsp "Enter the user credentials encryption key: " key
 echo
-read -rp "Edit config? [y/n]: " ans
+read -rp "Edit config? [y/n]: " cnf
+echo
+read -rp "Dual boot with windows [y/n]: " db
 
-if [ "$ans" = "y" ]; then
+# install arch
+if [ "$cnf" = "y" ]; then
     archinstall --config-url https://raw.githubusercontent.com/TB543/Arch-Install/refs/heads/main/config/user_configuration.json \
         --creds-url https://raw.githubusercontent.com/TB543/Arch-Install/refs/heads/main/config/user_credentials.json \
         --creds-decryption-key "$key"
