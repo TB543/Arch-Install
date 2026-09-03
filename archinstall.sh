@@ -33,4 +33,4 @@ chmod +x save_config.sh
 
 # reboots into new OS
 EOF
-reboot
+#reboot
