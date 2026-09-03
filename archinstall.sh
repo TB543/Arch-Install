@@ -3,7 +3,7 @@
 
 # gets user input for install steps
 read -rsp "Enter the user credentials encryption key: " key
-read -rp "Edit config? [y/n]" ans
+read -rp "Edit config? [y/n]: " ans
 
 if [ "$ans" = "y" ]; then
     archinstall --config-url https://raw.githubusercontent.com/TB543/Arch-Install/refs/heads/main/config/user_configuration.json \
