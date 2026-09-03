@@ -8,7 +8,7 @@ clear
 read -rp "Edit config? [y/n]: " cnf
 clear
 lsblk -f
-read -rp "Enter the partition containing windows for dual boot\nOr hit enter to ignore dual boot: " drive
+read -rp "Enter the partition containing windows for dual boot or hit enter to ignore dual boot: " drive
 
 # install arch
 if [ "$cnf" = "y" ]; then
