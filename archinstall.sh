@@ -7,14 +7,8 @@ read -rsp "Enter the user credentials encryption key: " key
 clear
 read -rp "Edit config? [y/n]: " cnf
 clear
-read -rp "Dual boot with windows [y/n]: " db
-
-# gets windows drive
-if [ "$db" = "y" ]; then
-    clear
-    lsblk -f
-    read -rp "Enter the partition containing windows:" drive
-fi
+lsblk -f
+read -rp "Enter the partition containing windows for dual boot\nOr hit enter to ignore dual boot: " drive
 
 # install arch
 if [ "$cnf" = "y" ]; then
