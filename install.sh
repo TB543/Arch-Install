@@ -19,7 +19,7 @@ if [ "$answer" = "y" ]; then
 fi
 
 # installs desktop env
-sudo pacman -S --noconfirm qtile xorg-server xorg-xinit xorg-xauth kitty ly
+sudo pacman -S --noconfirm qtile xorg-server xorg-xinit xorg-xauth xorg-xrandr kitty ly picom
 sudo systemctl disable getty@tty2.service
 sudo systemctl enable ly@tty2.service
 
@@ -27,6 +27,7 @@ sudo systemctl enable ly@tty2.service
 echo qtile start > ~/.xinitrc
 mkdir -p ~/.config/qtile
 cp config/qtile.py ~/.config/qtile/config.py
+cp config/picom.conf ~/.config/picom/picom.conf
 sudo cp config/ly.ini /etc/ly/config.ini
 
 # installs package manager for desktop apps
@@ -38,7 +39,7 @@ cd ..
 sudo rm -rf yay
 
 # installs desktop apps
-yay -S --noconfirm google-chrome visual-studio-code-bin
+yay -S --noconfirm google-chrome visual-studio-code-bin spotify
 
 # reboots system
 sudo reboot

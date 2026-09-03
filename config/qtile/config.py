@@ -2,70 +2,48 @@ from libqtile.config import Key, Click, Drag, Screen
 from libqtile.lazy import lazy
 from libqtile.bar import Bar
 from libqtile import widget
-from subprocess import Popen, check_output
+from subprocess import Popen
 from libqtile.hook import subscribe
-from re import search
 
 
-# apps can be added here and taskbar will expand dynamically
-taskbar_apps = [
-    ("/usr/share/icons/hicolor/scalable/apps/kitty.svg", "kitty"),
-    ("/usr/share/icons/hicolor/256x256/apps/google-chrome.png", "google-chrome-stable"),
-    ("/usr/share/pixmaps/vscode.png", "code"),
-    ("/usr/share/icons/hicolor/256x256/apps/spotify.png", "spotify")
-]
-
-
-# ===================================== EVERYTHING PAST THIS POINT IS BASE CONFIG =====================================
-
-
-# starts compositor
 @subscribe.startup_once
 def startup():
     Popen(["picom"])
 
-# keybinds
+
 keys = [
     Key(["mod4"], "r", lazy.reload_config(), desc="Reload the config"),
 ]
 
-# mouse controls
 mouse = [
     Drag(["mod4"], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
     Drag(["mod4"], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
     Click([], "Button2", lazy.window.bring_to_front()),
 ]
 
-# calculates margin for taskbar
-TASKBAR_PADDING = 30
-TASKBAR_ICON_SIZE = 50
-output = check_output(["xrandr", "--query"], text=True)
-screen_width = int(search(r" connected.*?(\d+)x(\d+)\+", output).group(1))
-taskbar_width = len(taskbar_apps) * (TASKBAR_ICON_SIZE + (TASKBAR_PADDING)) + TASKBAR_PADDING
-margin = (screen_width - taskbar_width) // 2
-
-# creates screen layouts
 screens = [
     Screen(
         wallpaper="~/Arch-Install/Wallpaper.jpg",
         wallpaper_mode="fill",
         bottom=Bar(
             [
+                widget.Spacer(),
                 widget.LaunchBar(
-                    progs=taskbar_apps,
-                    icon_size=TASKBAR_ICON_SIZE,
-                    padding=TASKBAR_PADDING
-                )
+                    progs=[
+                        ("kitty", "kitty"),
+                        ("chrome", "google-chrome-stable"),
+                        ("vscode", "code"),
+                        ("spotify", "spotify"),
+                    ],
+                    padding=10,
+                    background="#000000"
+                ),
+                widget.Spacer(),
             ],
             70,
-            background="#07111ccc",
-            margin=[15, margin, 15, margin],
+            background="#00000000",
         ),
     ),
-    Screen(
-        wallpaper="~/Arch-Install/Wallpaper.jpg",
-        wallpaper_mode="fill",
-    )
 ]
 
 
