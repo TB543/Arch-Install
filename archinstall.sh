@@ -2,11 +2,19 @@
 
 
 # gets user input for install steps
+clear
 read -rsp "Enter the user credentials encryption key: " key
-echo
+clear
 read -rp "Edit config? [y/n]: " cnf
-echo
+clear
 read -rp "Dual boot with windows [y/n]: " db
+
+# gets windows drive
+if [ "$db" = "y" ]; then
+    clear
+    lsblk -f
+    read -rp "Enter the partition containing windows:" drive
+fi
 
 # install arch
 if [ "$cnf" = "y" ]; then
@@ -32,7 +40,7 @@ git clone https://github.com/TB543/Arch-Install
 cd Arch-Install
 chmod +x postinstall.sh
 chmod +x save_config.sh
-./postinstall.sh
+./postinstall.sh "$drive"
 '
 
 # reboots into new OS
