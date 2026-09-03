@@ -3,6 +3,9 @@
 # this  file should be run after installing a minimal arch build
 # must be run in the Arch-Install directory as default user
 
+# ensures sudo does not need password when logged in
+echo "$(whoami) ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers
+
 # sets up dual boot
 read -p "Setup dual boot for windows? [y/n]" answer
 if [ "$answer" = "y" ]; then
@@ -19,15 +22,11 @@ if [ "$answer" = "y" ]; then
 fi
 
 # installs desktop env
-sudo pacman -S --noconfirm qtile xorg-server xorg-xinit xorg-xauth xorg-xrandr kitty ly picom
+sudo pacman -S --noconfirm kitty ly picom
 sudo systemctl disable getty@tty2.service
 sudo systemctl enable ly@tty2.service
 
 # creates config files
-echo qtile start > ~/.xinitrc
-mkdir -p ~/.config/qtile
-cp config/qtile.py ~/.config/qtile/config.py
-cp config/picom.conf ~/.config/picom/picom.conf
 sudo cp config/ly.ini /etc/ly/config.ini
 
 # installs package manager for desktop apps
