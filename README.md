@@ -4,46 +4,10 @@ A simple automated Arch Linux installation script.
 
 ## Installation
 
-### 1. Flash Arch Linux
-
-Flash the **Arch Linux minimal environment** to a USB drive and boot from it.
-
-### 2. Install Git
-
-Once booted into the Arch environment, install Git:
+After booting from the Arch Linux installation media, run the following command to automatically install Arch Linux:
 
 ```bash
-sudo pacman -S git
+curl -fsSL https://raw.githubusercontent.com/TB543/Arch-Install/main/install.sh | bash
 ```
 
-### 3. Clone the Repository
-
-Clone this repository:
-
-```bash
-git clone https://github.com/TB543/Arch-Install.git
-```
-
-### 4. Navigate to the Repository
-
-```bash
-cd Arch-Install
-```
-
-### 5. Make the Install Script Executable
-
-Give the installation script execute permissions:
-
-```bash
-chmod +x install.sh
-```
-
-### 6. Run the Installer
-
-Run the installation script:
-
-```bash
-./install.sh
-```
-
-The script will handle the remaining installation steps.
+The script will automatically run the Arch installation using the predefined configuration and credentials files.

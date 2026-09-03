@@ -1,4 +1,8 @@
 {
+    "packages": [
+        "git",
+        "base-devel"
+    ],
     "app_config": {
         "audio_config": {
             "audio": "pulseaudio"
@@ -244,7 +248,6 @@
         "type": "iso"
     },
     "ntp": true,
-    "packages": [],
     "pacman_config": {
         "color": true,
         "parallel_downloads": 5
