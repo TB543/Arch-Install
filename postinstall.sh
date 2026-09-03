@@ -2,17 +2,16 @@
 
 
 # sets up dual boot
-read -rp "Setup dual boot for windows? [y/n]: " answer
-if [ "$answer" = "y" ]; then
+if [ -n "$1" ]; then
     sudo pacman -S --noconfirm os-prober
     sudo sed -i 's/^#GRUB_DISABLE_OS_PROBER=false/GRUB_DISABLE_OS_PROBER=false/' /etc/default/grub
     clear
     lsblk -f
     read -p "Enter the partition containing windows:" drive
     mkdir mnt
-    sudo mount /dev/$drive mnt
+    sudo mount /dev/"$1" mnt
     sudo grub-mkconfig -o /boot/grub/grub.cfg
-    sudo umount /dev/$drive
+    sudo umount /dev/"$1"
     rmdir mnt
 fi
 
