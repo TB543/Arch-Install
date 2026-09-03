@@ -2,7 +2,7 @@
 
 
 # sets up dual boot
-read -p "Setup dual boot for windows? [y/n]: " answer
+read -rp "Setup dual boot for windows? [y/n]: " answer
 if [ "$answer" = "y" ]; then
     sudo pacman -S --noconfirm os-prober
     sudo sed -i 's/^#GRUB_DISABLE_OS_PROBER=false/GRUB_DISABLE_OS_PROBER=false/' /etc/default/grub
