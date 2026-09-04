@@ -39,4 +39,7 @@ chmod +x save_config.sh
 
 # reboots into new OS
 EOF
+arch=$(sudo efibootmgr | grep 'UEFI OS' | cut -c5-8)
+order=$(sudo efibootmgr | grep '^BootOrder:' | cut -d' ' -f2)
+sudo efibootmgr -o "$arch,$(echo "$order" | sed "s/$arch,//;s/,$arch//")"
 reboot
