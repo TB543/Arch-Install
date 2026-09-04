@@ -1,7 +1,8 @@
 {
     "packages": [
         "git",
-        "base-devel"
+        "base-devel",
+        "quickshell"
     ],
     "app_config": {
         "audio_config": {

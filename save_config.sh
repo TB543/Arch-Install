@@ -4,6 +4,7 @@
 # must be run from the Arch-Install directory
 cp /etc/ly/config.ini config/ly.ini
 cp ~/.config/hypr/hyprland.lua config/hyprland.lua
+cp ~/.config/quickshell/shell.qml config/quickshell.qml
 
 # pushes changes to the github repo
 git add .

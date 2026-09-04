@@ -17,7 +17,9 @@ sudo rm /usr/share/wayland-sessions/hyprland-uwsm.desktop
 git config --global user.email "tbarron543@gmail.com"
 git config --global user.name "TB543"
 sudo cp config/ly.ini /etc/ly/config.ini
+mkdir -p ~/.config/quickshell
 cp config/hyprland.lua ~/.config/hypr/hyprland.lua
+cp config/quickshell.qml ~/.config/quickshell/shell.qml
 
 # installs package manager for desktop apps and installs apps
 git clone https://aur.archlinux.org/yay.git
