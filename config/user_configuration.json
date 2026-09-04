@@ -101,7 +101,7 @@
             }
         ]
     },
-    "hostname": "Arch",
+    "hostname": "arch",
     "kernels": [
         "linux"
     ],
