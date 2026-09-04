@@ -12,13 +12,16 @@ if [ -n "$1" ]; then
     rmdir mnt
 fi
 
-# user config
+# removed default configs
 sudo rm /usr/share/wayland-sessions/hyprland-uwsm.desktop
+rm -rf ~/.config/hypr
+
+# user config
 git config --global user.email "tbarron543@gmail.com"
 git config --global user.name "TB543"
 sudo cp config/ly.ini /etc/ly/config.ini
 mkdir -p ~/.config/quickshell
-cp config/hyprland.lua ~/.config/hypr/hyprland.lua
+cp -r config/hypr ~/.config/hypr
 cp config/quickshell.qml ~/.config/quickshell/shell.qml
 
 # installs package manager for desktop apps and installs apps

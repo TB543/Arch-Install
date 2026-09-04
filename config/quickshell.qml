@@ -40,7 +40,7 @@ ShellRoot {
 
                 LauncherButton {
                     icon: ""
-                    app: "google-chrome"
+                    app: "google-chrome-stable"
                 }
 
                 LauncherButton {

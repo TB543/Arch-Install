@@ -2,7 +2,9 @@
     "packages": [
         "git",
         "base-devel",
-        "quickshell"
+        "quickshell",
+        "ttf-nerd-fonts-symbols",
+        "hyprpaper"
     ],
     "app_config": {
         "audio_config": {
