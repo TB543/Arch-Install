@@ -13,10 +13,11 @@ if [ -n "$1" ]; then
 fi
 
 # user config
+sudo rm /usr/share/wayland-sessions/hyprland-uwsm.desktop
 git config --global user.email "tbarron543@gmail.com"
 git config --global user.name "TB543"
 sudo cp config/ly.ini /etc/ly/config.ini
-sudo rm /usr/share/wayland-sessions/hyprland-uwsm.desktop
+cp config/hyprland.lua ~/.config/hypr/hyprland.lua
 
 # installs package manager for desktop apps and installs apps
 git clone https://aur.archlinux.org/yay.git
