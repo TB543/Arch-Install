@@ -23,7 +23,7 @@ else
 fi
 
 # sets up user config
-arch-chroot /mnt /bin/bash <<'EOF' 
+arch-chroot /mnt /bin/bash -s -- "$drive" <<'EOF' 
 USER1000=$(getent passwd 1000 | cut -d: -f1)
 echo "$USER1000 ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
 
@@ -34,8 +34,8 @@ git clone https://github.com/TB543/Arch-Install
 cd Arch-Install
 chmod +x postinstall.sh
 chmod +x save_config.sh
-./postinstall.sh "$drive"
-'
+./postinstall.sh "$1"
+' -- "$1"
 
 # reboots into new OS
 EOF
