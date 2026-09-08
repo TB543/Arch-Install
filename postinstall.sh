@@ -17,6 +17,7 @@ sudo rm /usr/share/wayland-sessions/hyprland-uwsm.desktop
 git config --global user.email "tbarron543@gmail.com"
 git config --global user.name "TB543"
 sudo cp config/ly.ini /etc/ly/config.ini
+mkdir -p ~/.config/hypr
 cp config/hyprland.lua ~/.config/hypr/hyprland.lua
 
 # caelestria (quickshell config) dependencies
