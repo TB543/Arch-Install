@@ -50,8 +50,7 @@ local menu        = "hyprlauncher"
 -- Or execute your favorite apps at launch like this:
 --
 hl.on("hyprland.start", function () 
-  hl.exec_cmd("quickshell")
-  hl.exec_cmd("hyprpaper")
+  hl.exec_cmd("caelestia shell -d")
 end)
 
 

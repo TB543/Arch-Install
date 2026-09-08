@@ -1,11 +1,30 @@
 {
-    "packages": [
-        "git",
-        "base-devel",
-        "quickshell",
-        "ttf-nerd-fonts-symbols",
-        "hyprpaper"
-    ],
+"packages": [
+    "git",
+    "base-devel",
+
+    "glibc",
+    "gcc-libs",
+    "ddcutil",
+    "brightnessctl",
+    "networkmanager",
+    "lm_sensors",
+    "aubio",
+    "libpipewire",
+    "libqalculate",
+    "power-profiles-daemon",
+    "ttf-material-symbols-variable",
+    "ttf-cascadia-code-nerd",
+    "qt6-base",
+    "qt6-declarative",
+    "qt6-imageformats",
+    "swappy",
+    "fish",
+    "bash",
+    "cmake",
+    "ninja",
+    "qt6-shadertools"
+],
     "app_config": {
         "audio_config": {
             "audio": "pipewire"

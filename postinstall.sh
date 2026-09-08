@@ -12,19 +12,32 @@ if [ -n "$1" ]; then
     rmdir mnt
 fi
 
-# removed default configs
-sudo rm /usr/share/wayland-sessions/hyprland-uwsm.desktop
-rm -rf ~/.config/hypr
-
 # user config
+sudo rm /usr/share/wayland-sessions/hyprland-uwsm.desktop
 git config --global user.email "tbarron543@gmail.com"
 git config --global user.name "TB543"
 sudo cp config/ly.ini /etc/ly/config.ini
-mkdir -p ~/.config/quickshell
-cp -r config/hypr ~/.config/hypr
-cp config/quickshell.qml ~/.config/quickshell/shell.qml
+cp config/hyprland.lua ~/.config/hypr/hyprland.lua
 
-# installs package manager for desktop apps and installs apps
+# caelestria (quickshell config) dependencies
+git clone https://aur.archlinux.org/paru.git
+cd paru
+makepkg -si --noconfirm
+cd ..
+sudo rm -rf paru
+paru -S --noconfirm caelestia-cli quickshell-git ttf-rubik-vf qt6-m3shapes-git libcava
+
+# caelestria (quickshell config)
+mkdir -p ~/.config/quickshell
+cd ~/.config/quickshell
+git clone https://github.com/caelestia-dots/shell.git caelestia
+cd caelestia
+cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/ -DINSTALL_QSCONFDIR="$HOME/.config/quickshell/caelestia"
+cmake --build build
+sudo cmake --install build
+sudo chown -R $USER ~/.config/quickshell/caelestia
+
+# yay (desktop apps)
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si --noconfirm
