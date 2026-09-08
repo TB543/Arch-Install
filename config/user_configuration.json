@@ -30,7 +30,7 @@
             "audio": "pipewire"
         },
         "bluetooth_config": {
-            "enabled": false
+            "enabled": true
         },
         "firewall_config": {
             "firewall": "ufw"
