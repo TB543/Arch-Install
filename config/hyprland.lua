@@ -225,4 +225,6 @@ hl.bind("ALT + right",  hl.dsp.exec_cmd("playerctl next"))
 hl.bind("ALT + space", hl.dsp.exec_cmd("playerctl play-pause"))
 hl.bind("ALT + left",  hl.dsp.exec_cmd("playerctl previous"))
 
+-- other bindings
 hl.bind("ALT + 4", hl.dsp.window.close())
+hl.bind("SUPER + SUPER_L", hl.dsp.global("caelestia:launcher"), { release = true })
