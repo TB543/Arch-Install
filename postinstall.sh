@@ -37,28 +37,20 @@ sudo cp services/auto-unzip.service ~/.config/systemd/user/auto-unzip.service
 systemctl --user enable auto-unzip.service
 mkdir ~/Downloads
 
-# caelestria (quickshell config) dependencies
-git clone https://aur.archlinux.org/paru.git
-cd paru
-makepkg -si --noconfirm
+# yay (desktop apps)
+git clone https://aur.archlinux.org/yay.git
+cd yay
+MAKEFLAGS="-j$(nproc)" makepkg -si --noconfirm
 cd ..
-sudo rm -rf paru
-paru -S --noconfirm caelestia-cli quickshell-git ttf-rubik-vf qt6-m3shapes-git libcava
+sudo rm -rf yay
 
 # caelestria (quickshell config)
+yay -S --noconfirm caelestia-cli quickshell-git ttf-rubik-vf qt6-m3shapes-git libcava google-chrome visual-studio-code-bin spotify
 mkdir -p ~/.config/quickshell
 cd ~/.config/quickshell
 git clone https://github.com/caelestia-dots/shell.git caelestia
 cd caelestia
 cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/ -DINSTALL_QSCONFDIR="$HOME/.config/quickshell/caelestia"
-cmake --build build
+cmake --build build --parallel $(nproc)
 sudo cmake --install build
 sudo chown -R $USER ~/.config/quickshell/caelestia
-
-# yay (desktop apps)
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si --noconfirm
-cd ..
-sudo rm -rf yay
-yay -S --noconfirm google-chrome visual-studio-code-bin spotify
