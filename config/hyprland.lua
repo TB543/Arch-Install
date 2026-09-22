@@ -129,6 +129,7 @@ local function select_hidden()
     end
 end
 hl.bind("SUPER + space", function()
+    local active = hl.get_active_window()
     local pos = hl.get_cursor_pos()
     local monitor = hl.get_monitor_at(pos)
     if not monitor then
@@ -136,7 +137,7 @@ hl.bind("SUPER + space", function()
     end
     current_workspace = monitor.active_workspace
     hl.dispatch(hl.dsp.workspace.toggle_special("hidden"))
-    if current_workspace.name == "special:hidden" then
+    if active.workspace.name == "special:hidden" then
         hl.unbind("mouse:272")
         hl.bind("mouse:272", select_hidden, { non_consuming = true })
     else
