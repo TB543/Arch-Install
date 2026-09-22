@@ -2,7 +2,11 @@
 -- windows + arrow keys to move windows, maximize and minimize
 -- windows + space to show minimized windows, click one to bring it forward to the current workspace
 -- windows + click for float mode
+-- windows + right click to resize in float mode
+-- alt + tab to change focus
 -- alt + arrow keys or space for media controls
+-- alt + 4 to close focused window (same as f4 on my slim keyboard)
+-- todo add way to select a window from the hidden workspace without using the mouse
 
 
 -- settings for main monitor (needed to adjust scale)
@@ -97,7 +101,7 @@ end)
 local current_workspace = nil
 local function select_hidden()
     local active = hl.get_active_window()
-    if active.workspace.name == "special:hidden" then
+    if active.workspace.name == "special:hidden" and active.workspace.visible then
         hl.dispatch(hl.dsp.window.move({ workspace = current_workspace }))
         hl.unbind("mouse:272")
         hl.bind("mouse:272", select_hidden, { non_consuming = true })
@@ -147,12 +151,37 @@ hl.bind("SUPER + right", function()
     hl.dispatch(hl.dsp.window.move({ direction = "right" }))
 end)
 
--- media controls
-hl.bind("ALT + right",  hl.dsp.exec_cmd("playerctl next"))
-hl.bind("ALT + space", hl.dsp.exec_cmd("playerctl play-pause"))
-hl.bind("ALT + left",  hl.dsp.exec_cmd("playerctl previous"))
+-- change focus with alt + tab
+hl.bind("ALT + tab", function()
+    local active = hl.get_active_window()
+    if active.workspace.name == "special:hidden" and active.workspace.visible then
+        return
+    end
+    local windows = {}
+    for _, window in pairs(hl.get_windows()) do
+        if window.workspace.visible then
+            table.insert(windows, window)
+        end
+    end
+    table.sort(windows, function(a, b)
+        if a.at.x == b.at.x then
+            return a.at.y < b.at.y
+        end
+        return a.at.x < b.at.x
+    end)
+    local index = 1
+    for i, window in ipairs(windows) do
+        if window.address == active.address then
+            index = (i % #windows) + 1
+            break
+        end
+    end
+    if #windows > 0 then
+        hl.dispatch(hl.dsp.focus({ window = windows[index] }))
+    end
+end)
 
--- move windows with super + mouse in float mode
+-- move/resieze windows with super + mouse in float mode
 hl.bind("SUPER + mouse:272", function()
     local active = hl.get_active_window()
     if active.workspace.name == "special:hidden" then
@@ -163,3 +192,11 @@ hl.bind("SUPER + mouse:272", function()
     end
     hl.dispatch(hl.dsp.window.drag())
 end)
+hl.bind("SUPER + mouse:273", hl.dsp.window.resize())
+
+-- media controls
+hl.bind("ALT + right",  hl.dsp.exec_cmd("playerctl next"))
+hl.bind("ALT + space", hl.dsp.exec_cmd("playerctl play-pause"))
+hl.bind("ALT + left",  hl.dsp.exec_cmd("playerctl previous"))
+
+hl.bind("ALT + 4", hl.dsp.window.close())
