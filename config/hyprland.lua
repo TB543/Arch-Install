@@ -89,10 +89,31 @@ hl.bind("SUPER + down", function()
     if can_move_down then
         hl.dispatch(hl.dsp.window.move({ direction = "down" }))
     else
+        local mouse = hl.get_cursor_pos()
         local workspace = active.workspace.name
         hl.dispatch(hl.dsp.window.move({ workspace = "special:hidden" }))
-        if workspace ~= "special:hidden" then
-            hl.dispatch(hl.dsp.workspace.toggle_special("hidden"))
+        hl.dispatch(hl.dsp.workspace.toggle_special("hidden"))
+        workspace_windows = hl.get_windows({ workspace = workspace })
+        local visible_windows = {}
+        for _, window in pairs(hl.get_windows()) do
+            if window.workspace.visible then
+                table.insert(visible_windows, window)
+            end
+        end
+        table.sort(visible_windows, function(a, b)
+            local function distance_to_window(window)
+                local left   = window.at.x
+                local right  = window.at.x + window.size.x
+                local top    = window.at.y
+                local bottom = window.at.y + window.size.y
+                local x = math.max(left, math.min(mouse.x, right))
+                local y = math.max(top, math.min(mouse.y, bottom))
+                return (x - mouse.x)^2 + (y - mouse.y)^2
+            end
+            return distance_to_window(a) < distance_to_window(b)
+        end)
+        if #visible_windows > 0 then
+            hl.dispatch(hl.dsp.focus({ window = visible_windows[1] }))
         end
     end
 end)
@@ -108,11 +129,12 @@ local function select_hidden()
     end
 end
 hl.bind("SUPER + space", function()
-    local active = hl.get_active_window()
-    if not active then
+    local pos = hl.get_cursor_pos()
+    local monitor = hl.get_monitor_at(pos)
+    if not monitor then
         return
     end
-    current_workspace = active.workspace
+    current_workspace = monitor.active_workspace
     hl.dispatch(hl.dsp.workspace.toggle_special("hidden"))
     if current_workspace.name == "special:hidden" then
         hl.unbind("mouse:272")
