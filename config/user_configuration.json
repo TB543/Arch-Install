@@ -23,7 +23,9 @@
     "bash",
     "cmake",
     "ninja",
-    "qt6-shadertools"
+    "qt6-shadertools",
+
+    "playerctl"
 ],
     "app_config": {
         "audio_config": {
