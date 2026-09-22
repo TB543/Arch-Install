@@ -6,6 +6,8 @@
 # copies new config
 cp /etc/ly/config.ini config/ly.ini
 cp ~/.config/hypr/hyprland.lua config/hyprland.lua
+rm -r config/caelestia
+cp -r ~/.config/caelestia config/caelestia
 
 # pushes changes to the github repo
 git add .

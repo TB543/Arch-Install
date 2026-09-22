@@ -1,0 +1,127 @@
+{
+    "appearance": {
+        "transparency": {
+            "enabled": false
+        }
+    },
+    "bar": {
+        "activeWindow": {
+            "compact": true,
+            "inverted": false,
+            "showOnHover": false
+        },
+        "clock": {
+            "background": true,
+            "showDate": true,
+            "showIcon": true
+        },
+        "persistent": true,
+        "popouts": {
+            "activeWindow": false,
+            "tray": false
+        },
+        "scrollActions": {
+            "workspaces": false
+        },
+        "showOnHover": true,
+        "statusIcons": [
+            {
+                "enabled": true,
+                "id": "network"
+            },
+            {
+                "enabled": true,
+                "id": "bluetooth"
+            }
+        ],
+        "tray": {
+            "background": true,
+            "compact": true,
+            "recolour": true
+        },
+        "workspaces": {
+            "activeIndicator": true,
+            "activeTrail": false,
+            "maxWindowIcons": 4,
+            "occupiedBg": false,
+            "perMonitor": true,
+            "showUnoccupied": false,
+            "showWindows": true,
+            "showWindowsOnSpecialWorkspaces": false,
+            "shown": 1
+        }
+    },
+    "dashboard": {
+        "showDashboard": true,
+        "showOnHover": false
+    },
+    "general": {
+        "apps": {
+            "explorer": [
+                "dolphin"
+            ],
+            "terminal": [
+                "kitty"
+            ]
+        }
+    },
+    "launcher": {
+        "actionPrefix": ">",
+        "hiddenApps": [
+            "bssh",
+            "bvnc",
+            "avahi-discover",
+            "cmake-gui",
+            "htop",
+            "qv4l2",
+            "qvidcap",
+            "uuctl",
+            "vim"
+        ]
+    },
+    "services": {
+        "clockFormat": "TwelveHour",
+        "dataUnits": "Decimal",
+        "weatherUnits": "Fahrenheit"
+    },
+    "sidebar": {
+        "enabled": false
+    },
+    "utilities": {
+        "quickToggles": [
+            {
+                "enabled": true,
+                "id": "wifi"
+            },
+            {
+                "enabled": true,
+                "id": "bluetooth"
+            },
+            {
+                "enabled": true,
+                "id": "mic"
+            },
+            {
+                "enabled": true,
+                "id": "settings"
+            },
+            {
+                "enabled": false,
+                "id": "gameMode"
+            },
+            {
+                "enabled": false,
+                "id": "dnd"
+            },
+            {
+                "enabled": false,
+                "id": "vpn"
+            }
+        ],
+        "toasts": {
+            "chargingChanged": true,
+            "fullscreen": "all",
+            "gameModeChanged": true
+        }
+    }
+}

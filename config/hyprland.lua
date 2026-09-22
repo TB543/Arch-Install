@@ -11,9 +11,9 @@
 -- windows + escape for power menu
 -- windows + shift + v for screen record
 -- windows + v for clipboard history
+-- windows + e for emoji keyboard
 -- windows + shift + s for screenshot
 -- ctrl + shift + esc for dashboard (similar to task manager)
--- todo add way to select a window from the hidden workspace without using the mouse
 
 
 -- settings for main monitor (needed to adjust scale)
@@ -135,7 +135,9 @@ local function select_hidden()
     if active and active.workspace.name == "special:hidden" and active.workspace.visible then
         hl.dispatch(hl.dsp.window.move({ workspace = current_workspace }))
         hl.unbind("mouse:272")
+        hl.unbind("RETURN")
         hl.bind("mouse:272", select_hidden, { non_consuming = true })
+        hl.bind("RETURN", select_hidden, { non_consuming = true })
     end
 end
 hl.bind("SUPER + space", function()
@@ -149,13 +151,18 @@ hl.bind("SUPER + space", function()
     hl.dispatch(hl.dsp.workspace.toggle_special("hidden"))
     if active.workspace.name == "special:hidden" then
         hl.unbind("mouse:272")
+        hl.unbind("RETURN")
         hl.bind("mouse:272", select_hidden, { non_consuming = true })
+        hl.bind("RETURN", select_hidden, { non_consuming = true })
     else
         hl.unbind("mouse:272")
+        hl.unbind("RETURN")
         hl.bind("mouse:272", select_hidden, { non_consuming = false }) 
+        hl.bind("RETURN", select_hidden, { non_consuming = false })
     end
 end)
 hl.bind("mouse:272", select_hidden, { non_consuming = true })
+hl.bind("RETURN", select_hidden, { non_consuming = true })
 
 -- move window left with super + arrow keys
 hl.bind("SUPER + left", function()
@@ -190,14 +197,18 @@ end)
 -- change focus with alt + tab
 hl.bind("ALT + tab", function()
     local active = hl.get_active_window()
-    if not active or active.workspace.name == "special:hidden" and active.workspace.visible then
-        return
-    end
     local windows = {}
+    local hidden = {}
     for _, window in pairs(hl.get_windows()) do
         if window.workspace.visible then
             table.insert(windows, window)
         end
+        if window.workspace.name == "special:hidden" and window.workspace.visible then
+            table.insert(hidden, window)
+        end
+    end
+    if #hidden > 0 then
+        windows = hidden
     end
     table.sort(windows, function(a, b)
         if a.at.x == b.at.x then
@@ -206,10 +217,12 @@ hl.bind("ALT + tab", function()
         return a.at.x < b.at.x
     end)
     local index = 1
-    for i, window in ipairs(windows) do
-        if window.address == active.address then
-            index = (i % #windows) + 1
-            break
+    if active then
+        for i, window in ipairs(windows) do
+            if window.address == active.address then
+                index = (i % #windows) + 1
+                break
+            end
         end
     end
     if #windows > 0 then
@@ -242,5 +255,6 @@ hl.bind("SUPER + S", hl.dsp.global("caelestia:nexus"))
 hl.bind("SUPER + ESCAPE", hl.dsp.global("caelestia:session"))
 hl.bind("CTRL + SHIFT + ESCAPE", hl.dsp.global("caelestia:dashboard"))
 hl.bind("SUPER + SHIFT + V", hl.dsp.global("caelestia:utilities"))
-hl.bind("SUPER + V", hl.dsp.exec_cmd("caelestia clipboard; ydotool key 29:1 42:1 47:1 47:0 42:0 29:0"))
+hl.bind("SUPER + V", hl.dsp.exec_cmd("caelestia clipboard && ydotool key 29:1 42:1 47:1 47:0 42:0 29:0"))
+hl.bind("SUPER + E", hl.dsp.exec_cmd("caelestia emoji -p && (ydotool key 29:1 42:1 47:1 47:0 42:0 29:0; cliphist list | head -n 1 | cliphist delete)"))
 hl.bind("SUPER + SHIFT + S", hl.dsp.global("caelestia:screenshotFreeze"))

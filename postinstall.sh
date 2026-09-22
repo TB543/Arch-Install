@@ -22,6 +22,7 @@ git config --global user.name "TB543"
 sudo cp config/ly.ini /etc/ly/config.ini
 mkdir -p ~/.config/hypr
 cp config/hyprland.lua ~/.config/hypr/hyprland.lua
+cp -r config/caelestia ~/.config/caelestia
 
 # caelestria (quickshell config) dependencies
 git clone https://aur.archlinux.org/paru.git
