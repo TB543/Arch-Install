@@ -14,8 +14,8 @@ fi
 
 # user config
 sudo systemctl enable NetworkManager
-systemctl --user enable ydotool
-sudo usermod -aG input tbarr
+# systemctl --user enable ydotool
+# sudo usermod -aG input tbarr
 sudo rm /usr/share/wayland-sessions/hyprland-uwsm.desktop
 git config --global user.email "tbarron543@gmail.com"
 git config --global user.name "TB543"
