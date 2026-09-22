@@ -43,7 +43,7 @@ hl.config({
 -- move window up or maximize with super + arrow keys
 hl.bind("SUPER + up", function()
     local active = hl.get_active_window()
-    if active.fullscreen ~= 0 or active.workspace.name == "special:hidden" then
+    if not active or active.fullscreen ~= 0 or active.workspace.name == "special:hidden" then
         return
     end
     if active.floating then
@@ -68,7 +68,7 @@ end)
 -- move window down or minimize with super + arrow keys
 hl.bind("SUPER + down", function()
     local active = hl.get_active_window()
-    if active.workspace.name == "special:hidden" then
+    if not active or active.workspace.name == "special:hidden" then
         return
     end
     if active.fullscreen ~= 0 then
@@ -101,7 +101,7 @@ end)
 local current_workspace = nil
 local function select_hidden()
     local active = hl.get_active_window()
-    if active.workspace.name == "special:hidden" and active.workspace.visible then
+    if active and active.workspace.name == "special:hidden" and active.workspace.visible then
         hl.dispatch(hl.dsp.window.move({ workspace = current_workspace }))
         hl.unbind("mouse:272")
         hl.bind("mouse:272", select_hidden, { non_consuming = true })
@@ -109,6 +109,9 @@ local function select_hidden()
 end
 hl.bind("SUPER + space", function()
     local active = hl.get_active_window()
+    if not active then
+        return
+    end
     current_workspace = active.workspace
     hl.dispatch(hl.dsp.workspace.toggle_special("hidden"))
     if current_workspace.name == "special:hidden" then
@@ -124,7 +127,7 @@ hl.bind("mouse:272", select_hidden, { non_consuming = true })
 -- move window left with super + arrow keys
 hl.bind("SUPER + left", function()
     local active = hl.get_active_window()
-    if active.workspace.name == "special:hidden" then
+    if not active or active.workspace.name == "special:hidden" then
         return
     end
     if active.fullscreen ~= 0 then
@@ -139,7 +142,7 @@ end)
 -- move window right with super + arrow keys
 hl.bind("SUPER + right", function()
     local active = hl.get_active_window()
-    if active.workspace.name == "special:hidden" then
+    if not active or active.workspace.name == "special:hidden" then
         return
     end
     if active.fullscreen ~= 0 then
@@ -154,7 +157,7 @@ end)
 -- change focus with alt + tab
 hl.bind("ALT + tab", function()
     local active = hl.get_active_window()
-    if active.workspace.name == "special:hidden" and active.workspace.visible then
+    if not active or active.workspace.name == "special:hidden" and active.workspace.visible then
         return
     end
     local windows = {}
@@ -184,7 +187,7 @@ end)
 -- move/resieze windows with super + mouse in float mode
 hl.bind("SUPER + mouse:272", function()
     local active = hl.get_active_window()
-    if active.workspace.name == "special:hidden" then
+    if not active or active.workspace.name == "special:hidden" then
         return
     end
     if not active.floating then
