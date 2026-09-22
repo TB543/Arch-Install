@@ -14,7 +14,7 @@ fi
 
 # mounts additional drives
 sudo mkdir -p /mnt/shared
-echo 'UUID=484D-B7CA /mnt/shared exfat uid=1000,gid=1000,umask=022,nofail,x-systemd.automount 0 0' | sudo tee -a /etc/fstab
+echo 'UUID=484D-B7CA /mnt/shared exfat uid=1000,gid=1000,umask=022,nofail 0 0' | sudo tee -a /etc/fstab
 sudo mount -a
 
 # user config
