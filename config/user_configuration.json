@@ -25,7 +25,10 @@
     "ninja",
     "qt6-shadertools",
 
-    "ydotool"
+    "ydotool",
+    "udiskie",
+    "unzip",
+    "inotify-tools"
 ],
     "app_config": {
         "audio_config": {

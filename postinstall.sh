@@ -12,6 +12,11 @@ if [ -n "$1" ]; then
     rmdir mnt
 fi
 
+# mounts additional drives
+sudo mkdir -p /mnt/shared
+echo 'UUID=484D-B7CA /mnt/shared exfat uid=1000,gid=1000,umask=022,nofail,x-systemd.automount 0 0' | sudo tee -a /etc/fstab
+sudo mount -a
+
 # user config
 sudo systemctl enable NetworkManager
 systemctl --user enable ydotool
@@ -21,8 +26,16 @@ git config --global user.email "tbarron543@gmail.com"
 git config --global user.name "TB543"
 sudo cp config/ly.ini /etc/ly/config.ini
 mkdir -p ~/.config/hypr
+mkdir -p ~/.config/udiskie
 cp config/hyprland.lua ~/.config/hypr/hyprland.lua
 cp -r config/caelestia ~/.config/caelestia
+cp -r config/udiskie.yml ~/.config/udiskie/config.yml
+
+
+# sets up scripts and services
+chmod +x assets/auto-unzip.sh
+sudo cp services/auto-unzip.service ~/.config/systemd/user/auto-unzip.service
+systemctl --user enable auto-unzip.service
 
 # caelestria (quickshell config) dependencies
 git clone https://aur.archlinux.org/paru.git

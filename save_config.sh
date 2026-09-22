@@ -8,6 +8,7 @@ cp /etc/ly/config.ini config/ly.ini
 cp ~/.config/hypr/hyprland.lua config/hyprland.lua
 rm -r config/caelestia
 cp -r ~/.config/caelestia config/caelestia
+cp -r ~/.config/udiskie/config.yml config/udiskie.yml
 
 # pushes changes to the github repo
 git add .

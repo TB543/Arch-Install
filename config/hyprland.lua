@@ -28,6 +28,7 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd("wl-paste --type text --watch cliphist store")
     hl.exec_cmd("wl-paste --type image --watch cliphist store")
     hl.exec_cmd("cliphist wipe")
+    hl.exec_cmd("udiskie")
 end)
 
 -- the look of everything
@@ -243,13 +244,30 @@ hl.bind("SUPER + mouse:272", function()
 end)
 hl.bind("SUPER + mouse:273", hl.dsp.window.resize())
 
+-- close windows and handle when all minimized windows are closed
+hl.bind("ALT + 4", function()
+    local active = hl.get_active_window()
+    local windows = hl.get_workspace_windows("special:hidden")
+    if not active then
+        return
+    end
+    if active.workspace.name == "special:hidden" and #windows == 1 then
+        hl.unbind("mouse:272")
+        hl.unbind("RETURN")
+        hl.bind("mouse:272", select_hidden, { non_consuming = true })
+        hl.bind("RETURN", select_hidden, { non_consuming = true })
+    end
+    hl.dispatch(hl.dsp.window.close())
+end)
+
 -- media controls
 hl.bind("ALT + right",  hl.dsp.global("caelestia:mediaNext"))
 hl.bind("ALT + space", hl.dsp.global("caelestia:mediaToggle"))
 hl.bind("ALT + left",  hl.dsp.global("caelestia:mediaPrev"))
+hl.bind("ALT + up", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ --limit 1.0"))
+hl.bind("ALT + down", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- --limit 1.0"))
 
 -- other bindings that are similar to windows bindings
-hl.bind("ALT + 4", hl.dsp.window.close())
 hl.bind("SUPER + SUPER_L", hl.dsp.global("caelestia:launcher"), { release = true })
 hl.bind("SUPER + S", hl.dsp.global("caelestia:nexus"))
 hl.bind("SUPER + ESCAPE", hl.dsp.global("caelestia:session"))

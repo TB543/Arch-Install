@@ -1,0 +1,9 @@
+[Unit]
+Description=Automatically unzip downloaded ZIP files
+
+[Service]
+ExecStart=%h/Arch-Install/services/auto-unzip.sh
+Restart=always
+
+[Install]
+WantedBy=default.target

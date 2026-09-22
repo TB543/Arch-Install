@@ -18,7 +18,7 @@
         "persistent": true,
         "popouts": {
             "activeWindow": false,
-            "tray": false
+            "tray": true
         },
         "scrollActions": {
             "workspaces": false
