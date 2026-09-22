@@ -31,7 +31,6 @@ cp config/hyprland.lua ~/.config/hypr/hyprland.lua
 cp -r config/caelestia ~/.config/caelestia
 cp -r config/udiskie.yml ~/.config/udiskie/config.yml
 
-
 # sets up scripts and services
 chmod +x assets/auto-unzip.sh
 sudo cp services/auto-unzip.service ~/.config/systemd/user/auto-unzip.service
