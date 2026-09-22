@@ -6,6 +6,13 @@
 -- alt + tab to change focus
 -- alt + arrow keys or space for media controls
 -- alt + 4 to close focused window (same as f4 on my slim keyboard)
+-- windows for start menu
+-- windows + s for settings
+-- windows + escape for power menu
+-- windows + shift + v for screen record
+-- windows + v for clipboard history
+-- windows + shift + s for screenshot
+-- ctrl + shift + esc for dashboard (similar to task manager)
 -- todo add way to select a window from the hidden workspace without using the mouse
 
 
@@ -17,7 +24,10 @@ hl.monitor({
 
 -- startup commands
 hl.on("hyprland.start", function () 
-  hl.exec_cmd("caelestia shell -d")
+    hl.exec_cmd("caelestia shell -d")
+    hl.exec_cmd("wl-paste --type text --watch cliphist store")
+    hl.exec_cmd("wl-paste --type image --watch cliphist store")
+    hl.exec_cmd("cliphist wipe")
 end)
 
 -- the look of everything
@@ -221,10 +231,16 @@ end)
 hl.bind("SUPER + mouse:273", hl.dsp.window.resize())
 
 -- media controls
-hl.bind("ALT + right",  hl.dsp.exec_cmd("playerctl next"))
-hl.bind("ALT + space", hl.dsp.exec_cmd("playerctl play-pause"))
-hl.bind("ALT + left",  hl.dsp.exec_cmd("playerctl previous"))
+hl.bind("ALT + right",  hl.dsp.global("caelestia:mediaNext"))
+hl.bind("ALT + space", hl.dsp.global("caelestia:mediaToggle"))
+hl.bind("ALT + left",  hl.dsp.global("caelestia:mediaPrev"))
 
--- other bindings
+-- other bindings that are similar to windows bindings
 hl.bind("ALT + 4", hl.dsp.window.close())
 hl.bind("SUPER + SUPER_L", hl.dsp.global("caelestia:launcher"), { release = true })
+hl.bind("SUPER + S", hl.dsp.global("caelestia:nexus"))
+hl.bind("SUPER + ESCAPE", hl.dsp.global("caelestia:session"))
+hl.bind("CTRL + SHIFT + ESCAPE", hl.dsp.global("caelestia:dashboard"))
+hl.bind("SUPER + SHIFT + V", hl.dsp.global("caelestia:utilities"))
+hl.bind("SUPER + V", hl.dsp.exec_cmd("caelestia clipboard; ydotool key 29:1 42:1 47:1 47:0 42:0 29:0"))
+hl.bind("SUPER + SHIFT + S", hl.dsp.global("caelestia:screenshotFreeze"))
