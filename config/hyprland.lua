@@ -1,6 +1,6 @@
 -- lua script keybinds
 -- windows + arrow keys to move windows, maximize and minimize
--- windows + space to show minimized windows, click one to bring it forward to the current workspace
+-- windows + space to show minimized windows, click or hit enter on one to bring it forward to the current workspace
 -- windows + click for float mode
 -- windows + right click to resize in float mode
 -- alt + tab to change focus
