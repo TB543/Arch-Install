@@ -36,6 +36,7 @@ cp -r config/udiskie.yml ~/.config/udiskie/config.yml
 chmod +x assets/auto-unzip.sh
 sudo cp services/auto-unzip.service ~/.config/systemd/user/auto-unzip.service
 systemctl --user enable auto-unzip.service
+mkdir ~/Downloads
 
 # caelestria (quickshell config) dependencies
 git clone https://aur.archlinux.org/paru.git
