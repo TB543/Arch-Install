@@ -16,10 +16,20 @@
 -- ctrl + shift + esc for dashboard (similar to task manager)
 
 
--- settings for main monitor (needed to adjust scale)
+-- settings for monitors
 hl.monitor({
-    output   = "",
-    scale    = "1",
+    output = "HDMI-A-4",
+    mirror = "HDMI-A-1",
+    scale = 1,
+})
+hl.monitor({
+    output = "HDMI-A-1",
+    position = "0x0",
+})
+hl.monitor({
+    output = "DP-2",
+    position = "1920x0",
+    scale = 1,
 })
 
 -- startup commands
@@ -145,7 +155,7 @@ hl.bind("SUPER + space", function()
     local active = hl.get_active_window()
     local pos = hl.get_cursor_pos()
     local monitor = hl.get_monitor_at(pos)
-    if not monitor then
+    if not monitor or #hl.get_workspace_windows("special:hidden") == 0 then
         return
     end
     current_workspace = monitor.active_workspace
