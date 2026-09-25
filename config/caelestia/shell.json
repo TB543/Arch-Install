@@ -67,11 +67,15 @@
         "idle": {
             "timeouts": [
                 {
-                "timeout": 1800,
-                "idleAction": "lock"
+                    "enabled": true,
+                    "idleAction": "lock",
+                    "inhibitWhenAudio": false,
+                    "inhibitWhenCharging": false,
+                    "respectInhibitors": true,
+                    "timeout": 1800
                 }
             ]
-            }
+        }
     },
     "launcher": {
         "actionPrefix": ">",
