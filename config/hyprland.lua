@@ -35,7 +35,7 @@ hl.monitor({
 
 -- startup commands
 hl.on("hyprland.start", function () 
-    hl.exec_cmd("caelestia shell -d")
+   hl.exec_cmd("caelestia shell -d")
     hl.exec_cmd("wl-paste --type text --watch cliphist store")
     hl.exec_cmd("wl-paste --type image --watch cliphist store")
     hl.exec_cmd("cliphist wipe")
@@ -287,4 +287,4 @@ hl.bind("SUPER + SHIFT + V", hl.dsp.global("caelestia:utilities"))
 hl.bind("SUPER + V", hl.dsp.exec_cmd("caelestia clipboard && ydotool key 29:1 42:1 47:1 47:0 42:0 29:0"))
 hl.bind("SUPER + E", hl.dsp.exec_cmd("caelestia emoji -p && (ydotool key 29:1 42:1 47:1 47:0 42:0 29:0; cliphist list | head -n 1 | cliphist delete)"))
 hl.bind("SUPER + SHIFT + S", hl.dsp.global("caelestia:screenshotFreeze"))
-ht.bind("SUPER + R", h1.disp.exec_cmd("kitty"))
+hl.bind("SUPER + R", hl.dsp.exec_cmd("kitty"))
