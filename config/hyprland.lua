@@ -13,6 +13,7 @@
 -- windows + v for clipboard history
 -- windows + e for emoji keyboard
 -- windows + shift + s for screenshot
+-- windows + R for kitty
 -- ctrl + shift + esc for dashboard (similar to task manager)
 
 
@@ -286,3 +287,4 @@ hl.bind("SUPER + SHIFT + V", hl.dsp.global("caelestia:utilities"))
 hl.bind("SUPER + V", hl.dsp.exec_cmd("caelestia clipboard && ydotool key 29:1 42:1 47:1 47:0 42:0 29:0"))
 hl.bind("SUPER + E", hl.dsp.exec_cmd("caelestia emoji -p && (ydotool key 29:1 42:1 47:1 47:0 42:0 29:0; cliphist list | head -n 1 | cliphist delete)"))
 hl.bind("SUPER + SHIFT + S", hl.dsp.global("caelestia:screenshotFreeze"))
+ht.bind("SUPER + R", h1.disp.exec_cmd("kitty"))
