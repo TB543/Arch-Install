@@ -80,20 +80,6 @@
     "launcher": {
         "actionPrefix": ">",
         "hiddenApps": [
-            "bssh",
-            "bvnc",
-            "avahi-discover",
-            "cmake-gui",
-            "htop",
-            "qv4l2",
-            "qvidcap",
-            "uuctl",
-            "vim",
-            "unityhub-unity-editor",
-            "unityhub-unity-editor-6000.3.1f1",
-            "dolphin-emu",
-            "com.libretro.RetroArch",
-            "vlc"
         ]
     },
     "services": {
