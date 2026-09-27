@@ -161,7 +161,7 @@ hl.bind("SUPER + space", function()
     end
     current_workspace = monitor.active_workspace
     hl.dispatch(hl.dsp.workspace.toggle_special("hidden"))
-    if active.workspace.name == "special:hidden" then
+    if active and active.workspace.name == "special:hidden" then
         hl.unbind("mouse:272")
         hl.unbind("RETURN")
         hl.bind("mouse:272", select_hidden, { non_consuming = true })
