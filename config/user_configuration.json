@@ -41,7 +41,9 @@
     "openrgb",
     "deepin-calculator",
     "celluloid",
-    "gwenview"
+    "gwenview",
+    "kitty",
+    "dolphin"
 ],
     "app_config": {
         "audio_config": {

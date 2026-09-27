@@ -60,6 +60,9 @@
             "explorer": [
                 "dolphin"
             ],
+            "playback": [
+                "celluloid"
+            ],
             "terminal": [
                 "kitty"
             ]
@@ -79,7 +82,25 @@
     },
     "launcher": {
         "actionPrefix": ">",
+        "favouriteApps": [
+            "com.microsoft.VSCode",
+            "spotify",
+            "google-chrome",
+            "org.kde.dolphin"
+        ],
         "hiddenApps": [
+            "bssh",
+            "bvnc",
+            "avahi-discover",
+            "cmake-gui",
+            "lstopo",
+            "htop",
+            "gtk-lshw",
+            "mpv",
+            "qv4l2",
+            "qvidcap",
+            "uuctl",
+            "vim"
         ]
     },
     "services": {
