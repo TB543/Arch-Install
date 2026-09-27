@@ -48,4 +48,3 @@ cmake --build build --parallel $(nproc)
 sudo cmake --install build
 sudo chown -R $USER ~/.config/quickshell/caelestia
 powerprofilesctl set performance
-sudo pacman -Syu --noconfirm
