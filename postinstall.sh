@@ -2,7 +2,7 @@
 
 
 # drive setup additional drives
-sudo sed -i 's/^#GRUB_DISABLE_OS_PROBER=false/GRUB_DISABLE_OS_PROBER=false/' /etc/default/grub
+sudo sed -i 's/^#GRUB_DISABLE_OS_PROBER=false/GRUB_DISABLE_OS_PROBER=false\nGRUB_DISABLE_BOOTNEXT=true/' /etc/default/grub
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 sudo mkdir -p /mnt/shared
 echo 'UUID=484D-B7CA /mnt/shared exfat uid=1000,gid=1000,umask=022,nofail 0 0' | sudo tee -a /etc/fstab
