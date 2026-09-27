@@ -3,6 +3,17 @@
     "git",
     "base-devel",
     "os-prober",
+    "ydotool",
+    "udiskie",
+    "unzip",
+    "inotify-tools",
+    "python",
+    "tk",
+    "docker",
+    "docker-compose",
+    "nodejs",
+    "npm",
+    "jre21-openjdk",
 
     "glibc",
     "gcc-libs",
@@ -26,13 +37,11 @@
     "ninja",
     "qt6-shadertools",
 
-    "ydotool",
-    "udiskie",
-    "unzip",
-    "inotify-tools",
-
-    "tk",
-    "gedit"
+    "gedit",
+    "openrgb",
+    "deepin-calculator",
+    "celluloid",
+    "gwenview"
 ],
     "app_config": {
         "audio_config": {
