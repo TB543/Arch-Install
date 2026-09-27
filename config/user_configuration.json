@@ -2,6 +2,7 @@
 "packages": [
     "git",
     "base-devel",
+    "os-prober",
 
     "glibc",
     "gcc-libs",
@@ -28,7 +29,10 @@
     "ydotool",
     "udiskie",
     "unzip",
-    "inotify-tools"
+    "inotify-tools",
+
+    "tk",
+    "gedit"
 ],
     "app_config": {
         "audio_config": {

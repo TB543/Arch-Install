@@ -7,8 +7,6 @@ read -rsp "Enter the user credentials encryption key: " key
 clear
 read -rp "Edit config? [y/n]: " cnf
 clear
-lsblk -f
-read -rp "Enter the partition containing windows for dual boot or hit enter to ignore dual boot: " drive
 
 # install arch
 if [ "$cnf" = "y" ]; then
@@ -23,7 +21,7 @@ else
 fi
 
 # sets up user config
-arch-chroot /mnt /bin/bash -s -- "$drive" <<'EOF' 
+arch-chroot /mnt /bin/bash -s <<'EOF' 
 USER1000=$(getent passwd 1000 | cut -d: -f1)
 echo "$USER1000 ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
 
@@ -34,12 +32,7 @@ git clone https://github.com/TB543/Arch-Install
 cd Arch-Install
 chmod +x postinstall.sh
 chmod +x save_config.sh
-./postinstall.sh "$1"
-' -- "$1"
-
-# reboots into new OS
+./postinstall.sh
+'
 EOF
-arch=$(sudo efibootmgr | grep 'UEFI OS' | cut -c5-8)
-sudo efibootmgr -n "$arch"
-sleep 10
 reboot
