@@ -40,6 +40,7 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd("wl-paste --type image --watch cliphist store")
     hl.exec_cmd("cliphist wipe")
     hl.exec_cmd("udiskie")
+    hl.exec_cmd("socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CONNECT:/tmp/.X11-unix/X0")
 end)
 
 -- the look of everything

@@ -100,7 +100,9 @@
             "qv4l2",
             "qvidcap",
             "uuctl",
-            "vim"
+            "vim",
+            "unityhub-unity-editor-6000.6.3f1",
+            "unityhub-unity-editor"
         ]
     },
     "services": {
