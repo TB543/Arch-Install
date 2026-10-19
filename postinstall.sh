@@ -38,7 +38,7 @@ cd ..
 sudo rm -rf yay
 
 # caelestria (quickshell config)
-yay -S --noconfirm caelestia-cli quickshell-git ttf-rubik-vf qt6-m3shapes-git libcava google-chrome visual-studio-code-bin spotify discord unityhub
+yay -S --noconfirm caelestia-cli quickshell-git ttf-rubik-vf qt6-m3shapes-git libcava google-chrome visual-studio-code-bin spotify discord unityhub minecraft-launcher
 mkdir -p ~/.config/quickshell
 cd ~/.config/quickshell
 git clone https://github.com/caelestia-dots/shell.git caelestia

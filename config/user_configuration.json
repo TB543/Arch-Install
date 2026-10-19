@@ -14,7 +14,7 @@
     "docker-compose",
     "nodejs",
     "npm",
-    "jre21-openjdk",
+    "jre25-openjdk",
 
     "glibc",
     "gcc-libs",
