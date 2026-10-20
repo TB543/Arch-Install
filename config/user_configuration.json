@@ -6,6 +6,7 @@
     "ydotool",
     "udiskie",
     "unzip",
+    "ark",
     "inotify-tools",
     "socat",
     "python",
