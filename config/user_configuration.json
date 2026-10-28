@@ -45,7 +45,8 @@
     "celluloid",
     "gwenview",
     "kitty",
-    "dolphin"
+    "dolphin",
+    "pycharm-community-edition"
 ],
     "app_config": {
         "audio_config": {
